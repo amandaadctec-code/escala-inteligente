@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aprenda a montar sua escala | ADC TEC</title>
+<meta name="description" content="Passo a passo com exemplo pronto: veja como montar a escala de trabalho da sua empresa.">
+<style>
+:root{--navy:#0b2954;--blue:#10488e;--orange:#f56925;--orange-dk:#c2410c;--bg:#f5f7fc;--line:#dce4f0;--ink:#18294b;--muted:#5c6a82;--soft:#e5edff}
+*{box-sizing:border-box}
+body{font:16px/1.55 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink)}
+button{font:inherit;cursor:pointer}
+a{color:var(--blue)}
+.top{background:#fff;border-bottom:1px solid var(--line)}
+.topin{max-width:960px;margin:auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
+.logo{width:64px;height:52px;object-fit:contain}
+.brand{flex:1;min-width:0}
+.brand strong{display:block;font-size:22px;line-height:1.15;color:#091d46}
+.brand span{font-size:14px;color:var(--muted)}
+.full{font-size:14px;white-space:nowrap}
+main{max-width:960px;margin:auto;padding:16px 16px 40px}
+.progress{display:flex;align-items:center;gap:12px;margin:4px 0 14px}
+.bar{flex:1;height:10px;background:#dfe6f2;border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--orange);border-radius:99px;transition:width .3s}
+.progress span{font-size:14px;font-weight:700;color:#24406c;white-space:nowrap}
+.lia{display:flex;gap:14px;align-items:flex-end;margin-bottom:14px}
+.lia img{width:92px;height:auto;flex:none}
+.bubble{background:var(--soft);border-radius:16px 16px 16px 4px;padding:14px 18px;font-size:17px;position:relative}
+.bubble b{color:#0c2a5c}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:14px}
+h1{font-size:26px;line-height:1.2;margin:0 0 6px;color:#0c2550}
+h2{font-size:18px;margin:0 0 10px;color:#132b58}
+.lead{color:var(--muted);margin:0 0 6px}
+.why{background:#fff8ef;border:1px solid #f7d9b8;border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.why h2{color:var(--orange-dk);font-size:16px;margin-bottom:4px}
+.why p{margin:0}
+.where{font-size:14px;color:var(--muted);margin:10px 0 0}
+.where b{color:var(--ink)}
+.fake{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.f{display:flex;flex-direction:column;gap:4px}
+.f span{font-size:13px;font-weight:600;color:#53627b}
+.f output{display:block;padding:10px 12px;border:1px solid #cfdaeb;border-radius:8px;background:#f7f9fc;font-weight:600}
+.people{width:100%;border-collapse:collapse}
+.people th,.people td{text-align:left;padding:10px 8px;border-bottom:1px solid #e7ecf3}
+.people th{font-size:13px;color:#5a6c87}
+.math{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:17px;margin-top:6px}
+.math .n{background:#f1f5fb;border:1px solid var(--line);border-radius:10px;padding:8px 12px;text-align:center;line-height:1.2}
+.math .n small{display:block;font-size:12px;color:var(--muted)}
+.math .n.ok{background:#eaf9f1;border-color:#bfe5cf}
+.math .n.ok b{color:#08713f}
+.week{width:100%;border-collapse:separate;border-spacing:4px}
+.week th{font-size:13px;color:#5a6c87;font-weight:700;text-align:center}
+.week th:first-child{text-align:left}
+.week td{text-align:center}
+.week td:first-child{text-align:left;font-weight:600;white-space:nowrap;padding-right:6px}
+.tag{display:inline-grid;place-items:center;min-width:34px;min-height:34px;border-radius:8px;font-weight:800;font-size:13px}
+.T{background:#dcf7e8;color:#08713f}
+.F{background:#edf1f7;color:#5d6980}
+.H{background:#ffedc1;color:#805c06}
+.X{background:#ffe1e3;color:#a1182a}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:14px;margin:10px 0 0}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend .tag{min-width:28px;min-height:26px;font-size:12px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;-webkit-overflow-scrolling:touch}
+.cal{border-collapse:collapse;min-width:max-content}
+.cal th{background:var(--navy);color:#fff;font-size:12px;font-weight:600;padding:6px 3px;min-width:38px;line-height:1.2}
+.cal th.sun{background:#943642}
+.cal th.who,.cal td.who{position:sticky;left:0;z-index:1;text-align:left;min-width:96px;padding:6px 10px}
+.cal td.who{background:#fff;font-weight:600;font-size:14px}
+.cal td{border:1px solid #e3e7ee;text-align:center;padding:3px}
+.cal .tag{min-width:32px;min-height:32px;font-size:12px}
+.totals{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:12px}
+.tot{background:#f7f9fc;border:1px solid var(--line);border-radius:10px;padding:12px}
+.tot b{display:block;font-size:20px;color:var(--blue)}
+.tot span{font-size:14px;color:var(--muted)}
+.alert{padding:12px 14px;border-radius:10px;margin-top:10px;border:1px solid}
+.alert strong{display:block}
+.alert p{margin:2px 0 0;font-size:15px}
+.alert.ok{background:#eaf9f1;border-color:#c7e7d3}
+.alert.bad{background:#fff0f0;border-color:#f4c4c7}
+.alert.warn{background:#fff9eb;border-color:#f5e0ab}
+.toggle{display:flex;align-items:center;gap:12px;background:#f1f5fb;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:14px;font-weight:600;cursor:pointer;min-height:48px}
+.toggle input{width:22px;height:22px;flex:none;accent-color:var(--orange-dk)}
+.check{list-style:none;padding:0;margin:0}
+.check li{padding:8px 0 8px 34px;position:relative;border-bottom:1px solid #eef1f6}
+.check li::before{content:"✓";position:absolute;left:4px;top:7px;width:22px;height:22px;border-radius:50%;background:#dcf7e8;color:#08713f;font-weight:800;display:grid;place-items:center;font-size:13px}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:6px}
+.btn{min-height:48px;padding:10px 22px;border-radius:10px;font-weight:700;border:1px solid var(--blue);background:var(--blue);color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn.next{background:var(--orange-dk);border-color:var(--orange-dk)}
+.nav .btn.next{margin-left:auto}
+.btn.sec{background:#fff;color:#15417a;border-color:#c4d2e7}
+.btn[hidden]{display:none}
+.btn:focus-visible,.toggle:focus-within,a:focus-visible,summary:focus-visible{outline:3px solid #7aa7ff;outline-offset:2px}
+details.glos{background:#fff;border:1px solid var(--line);border-radius:14px;margin-top:22px}
+details.glos summary{padding:14px 18px;font-weight:700;cursor:pointer;min-height:48px;display:flex;align-items:center}
+details.glos dl{margin:0;padding:0 18px 14px}
+details.glos dt{font-weight:700;margin-top:10px;color:#0c2550}
+details.glos dd{margin:2px 0 0}
+footer{max-width:960px;margin:auto;padding:0 16px 30px;font-size:13px;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:600px){
+  body{font-size:15px}
+  .brand strong{font-size:18px}.brand span{display:none}.logo{width:48px;height:40px}
+  h1{font-size:22px}
+  .lia img{width:64px}
+  .bubble{font-size:15px;padding:12px 14px}
+  .card{padding:16px}
+  .week{border-spacing:2px}.week .tag{min-width:28px;min-height:30px;font-size:12px}
+  .nav .btn{flex:1;padding:10px 12px}
+}
+@media print{.nav,.progress,.top a.full{display:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin">
+  <img class="logo" src="../assets/adc-tec.png" alt="ADC TEC">
+  <div class="brand"><strong>Aprenda a montar sua escala</strong><span>Exemplo passo a passo da Escala Inteligente</span></div>
+  <a class="full" href="../">Versão completa</a>
+</div></header>
+
+<main>
+  <div class="progress" aria-hidden="true"><div class="bar"><i id="barFill"></i></div><span id="stepLabel"></span></div>
+  <div id="live" class="sr" aria-live="polite"></div>
+  <section id="screen" tabindex="-1"></section>
+  <nav class="nav" aria-label="Navegação do passo a passo">
+    <button class="btn sec" id="back" type="button">← Voltar</button>
+    <button class="btn next" id="next" type="button">Próximo →</button>
+  </nav>
+
+  <details class="glos">
+    <summary>📖 Não entendeu uma palavra? Veja o glossário</summary>
+    <dl>
+      <dt>Escala de trabalho</dt><dd>O quadro que mostra, para cada dia do mês, quem trabalha, em que horário e quem está de folga.</dd>
+      <dt>Jornada</dt><dd>O tempo que a pessoa trabalha. Pode ser contado por dia (jornada diária) ou por semana (jornada semanal).</dd>
+      <dt>Intervalo</dt><dd>A pausa no meio do dia, normalmente para o almoço. Não conta como hora trabalhada.</dd>
+      <dt>Folga (descanso semanal)</dt><dd>Dia inteiro sem trabalho dentro da semana. Desde 16/12/2026 são pelo menos 2 por semana.</dd>
+      <dt>Descanso entre jornadas</dt><dd>O tempo entre a saída de um dia e a entrada do dia seguinte. Precisa ser de pelo menos 11 horas.</dd>
+      <dt>Feriado</dt><dd>Dia de descanso definido em lei: nacional, do estado ou da cidade. Trabalhar nele exige cuidado com pagamento ou folga em troca.</dd>
+      <dt>5x2 e 6x1</dt><dd>5x2: cinco dias de trabalho e dois de folga. 6x1: seis dias de trabalho e um de folga. Com a nova regra, a 6x1 deixa de ser permitida.</dd>
+      <dt>Convenção coletiva</dt><dd>Acordo entre o sindicato dos empregados e o das empresas de uma categoria. Pode trazer regras próprias de horário, feriados e folgas.</dd>
+    </dl>
+  </details>
+</main>
+
+<footer>
+  ADC TEC • Exemplo didático com empresa e pessoas fictícias. A escala real deve ser montada na <a href="../">versão completa</a>, que confere outras regras. Este material não é parecer jurídico: confira também a convenção coletiva da sua categoria.
+</footer>
+
+<script>
+(()=>{
+/* Exemplo fixo: Padaria Exemplo, janeiro de 2027 (todos os dados são fictícios). */
+const YEAR=2027, MONTH=0, HOLIDAY=1;
+const DOW=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+const PEOPLE=[
+  {name:'Ana',role:'Atendente',days:[1,2,3,4,5],off:'sábado e domingo'},
+  {name:'Bruno',role:'Padeiro',days:[1,2,3,4,5],off:'sábado e domingo'},
+  {name:'Carla',role:'Caixa',days:[2,3,4,5,6],off:'domingo e segunda'}
+];
+const nDays=new Date(YEAR,MONTH+1,0).getDate();
+const $=id=>document.getElementById(id);
+let step=0, whatIf=false;
+
+const tag=(c,t,label)=>`<span class="tag ${c}" title="${label}" aria-label="${label}">${t}</span>`;
+const T=()=>tag('T','T','Trabalho'), F=()=>tag('F','F','Folga'), H=()=>tag('H','Fer','Feriado'), X=()=>tag('X','T!','Trabalho a mais');
+
+function statusOf(p,d){
+  const dw=new Date(YEAR,MONTH,d).getDay();
+  if(d===HOLIDAY)return 'H';
+  if(p.days.includes(dw))return 'T';
+  if(whatIf&&p.name==='Carla'&&dw===0)return 'X';
+  return 'F';
+}
+function calendar(){
+  let h='<div class="scroll"><table class="cal"><caption class="sr">Escala de janeiro de 2027 da Padaria Exemplo</caption><thead><tr><th class="who" scope="col">Pessoa</th>';
+  for(let d=1;d<=nDays;d++){const dw=new Date(YEAR,MONTH,d).getDay();h+=`<th scope="col" class="${dw===0?'sun':''}">${String(d).padStart(2,'0')}<br>${DOW[dw]}</th>`}
+  h+='</tr></thead><tbody>';
+  for(const p of PEOPLE){h+=`<tr><td class="who">${p.name}</td>`;for(let d=1;d<=nDays;d++){const s=statusOf(p,d);h+=`<td>${s==='T'?T():s==='H'?H():s==='X'?X():F()}</td>`}h+='</tr>'}
+  return h+'</tbody></table></div>';
+}
+function totals(){
+  return '<div class="totals">'+PEOPLE.map(p=>{let n=0;for(let d=1;d<=nDays;d++){const s=statusOf(p,d);if(s==='T'||s==='X')n++}return `<div class="tot"><span>${p.name}</span><b>${n} dias · ${n*8}h</b><span>no mês</span></div>`}).join('')+'</div>';
+}
+const legend=`<div class="legend"><span>${T()} Trabalho</span><span>${F()} Folga</span><span>${H()} Feriado</span></div>`;
+const weekTable=()=>{
+  let h='<table class="week"><caption class="sr">Semana de trabalho de cada pessoa</caption><thead><tr><th scope="col">Pessoa</th>';
+  [1,2,3,4,5,6,0].forEach(i=>h+=`<th scope="col">${DOW[i]}</th>`);h+='</tr></thead><tbody>';
+  for(const p of PEOPLE){h+=`<tr><td>${p.name}</td>`;[1,2,3,4,5,6,0].forEach(i=>h+=`<td>${p.days.includes(i)?T():F()}</td>`);h+='</tr>'}
+  return h+'</tbody></table>';
+};
+const lia=t=>`<div class="lia"><img src="../assets/lia.png" alt="LIA, assistente da ADC TEC"><div class="bubble">${t}</div></div>`;
+const why=t=>`<div class="why"><h2>Por que isso importa?</h2><p>${t}</p></div>`;
+const where=t=>`<p class="where">👉 Na versão completa: ${t}</p>`;
+
+const STEPS=[
+ {label:'Começo',html:()=>`
+  ${lia('Olá! Eu sou a <b>LIA</b>. Vou mostrar, passo a passo, como montar a escala de trabalho de uma empresa. Você não precisa digitar nada: é só clicar em <b>Próximo</b>.')}
+  <div class="card">
+    <h1>Vamos montar a escala da <b>Padaria Exemplo</b></h1>
+    <p class="lead">Uma padaria de mentira, com 3 funcionários de mentira, para você ver como funciona.</p>
+    <p>A escala é o quadro que mostra <b>quem trabalha em cada dia do mês</b>, em que horário e quem está de folga. Ela ajuda a empresa a não deixar faltar gente e a cumprir a lei.</p>
+    <p>São 6 passos curtos:</p>
+    <ol>
+      <li>Escolher o mês</li><li>Dizer quem trabalha</li><li>Definir o horário</li><li>Organizar as folgas</li><li>Marcar os feriados</li><li>Ver a escala pronta</li>
+    </ol>
+  </div>`},
+ {label:'Passo 1 de 6 · O mês',html:()=>`
+  ${lia('Primeiro, escolha <b>qual mês</b> você vai montar. Cada escala vale para um mês.')}
+  <div class="card">
+    <h1>Qual mês você quer montar?</h1>
+    <div class="fake"><label class="f"><span>Mês</span><output>Janeiro</output></label><label class="f"><span>Ano</span><output>2027</output></label></div>
+    ${where('são os campos <b>Mês</b> e <b>Ano</b>, no quadro “Período”.')}
+  </div>
+  ${why('A lei mudou. <b>A partir de 16/12/2026</b>, a jornada vai até <b>42 horas por semana</b> e cada pessoa tem direito a <b>2 folgas por semana</b>. A partir de 16/12/2027, o limite cai para 40 horas. A página confere a regra certa para o mês escolhido.')}`},
+ {label:'Passo 2 de 6 · Quem trabalha',html:()=>`
+  ${lia('Agora, diga <b>quem trabalha</b> na empresa: o nome e a função de cada pessoa.')}
+  <div class="card">
+    <h1>Quem trabalha com você?</h1>
+    <table class="people"><thead><tr><th scope="col">Nome</th><th scope="col">Função</th></tr></thead><tbody>
+      ${PEOPLE.map(p=>`<tr><td>${p.name}</td><td>${p.role}</td></tr>`).join('')}
+    </tbody></table>
+    ${where('clique em <b>+ Adicionar colaborador</b> para cada pessoa. A página também pergunta o sexo, porque a lei tem uma regra própria sobre o trabalho de mulheres aos domingos.')}
+  </div>
+  ${why('Os nomes ficam só no seu computador. Nada é enviado para a internet, e tudo some quando você fecha a página.')}`},
+ {label:'Passo 3 de 6 · O horário',html:()=>`
+  ${lia('Depois, informe o <b>horário</b>: a que horas a pessoa entra, a que horas sai e quanto tempo tem de almoço.')}
+  <div class="card">
+    <h1>Qual é o horário de trabalho?</h1>
+    <div class="fake"><label class="f"><span>Entrada</span><output>08:00</output></label><label class="f"><span>Saída</span><output>17:00</output></label><label class="f"><span>Almoço (intervalo)</span><output>1 hora</output></label></div>
+    <h2 style="margin-top:18px">Fazendo a conta</h2>
+    <div class="math">
+      <div class="n"><small>das 8h às 17h</small><b>9 horas</b></div><span>−</span>
+      <div class="n"><small>almoço</small><b>1 hora</b></div><span>=</span>
+      <div class="n"><small>por dia</small><b>8 horas</b></div><span>×</span>
+      <div class="n"><small>dias na semana</small><b>5</b></div><span>=</span>
+      <div class="n ok"><small>por semana</small><b>40 horas ✓</b></div>
+    </div>
+    <p>40 horas cabem no limite de 42 horas por semana.</p>
+    ${where('é o quadro <b>Horário padrão</b>. Se algum dia for diferente (por exemplo, sexta mais curta), ajuste em <b>Dias e horários da semana</b>.')}
+  </div>
+  ${why('O almoço não conta como hora trabalhada. Quem trabalha <b>mais de 6 horas</b> no dia precisa de <b>pelo menos 1 hora</b> de intervalo.')}`},
+ {label:'Passo 4 de 6 · As folgas',html:()=>`
+  ${lia('Cada pessoa precisa de <b>2 folgas por semana</b>. A padaria abre no sábado, então a Carla folga no domingo e na segunda.')}
+  <div class="card">
+    <h1>Como ficam as folgas?</h1>
+    ${weekTable()}
+    ${legend.replace(/<span><span class="tag H[\s\S]*?Feriado<\/span>/,'')}
+    <ul>${PEOPLE.map(p=>`<li><b>${p.name}</b> folga ${p.off}.</li>`).join('')}</ul>
+    ${where('escolha <b>5x2</b> no “Modelo de escala”. Se as folgas não forem iguais para todos, escolha folgas <b>Rotativas</b>. Depois de gerar, dá para ajustar qualquer dia clicando nele.')}
+  </div>
+  ${why('Com folgas em dias diferentes, a empresa nunca fica sem ninguém e todos descansam 2 dias por semana.')}`},
+ {label:'Passo 5 de 6 · Os feriados',html:()=>`
+  ${lia('Marque os <b>feriados do mês</b>. Em janeiro de 2027, o dia 1º (sexta-feira) é o Dia da Confraternização Universal.')}
+  <div class="card">
+    <h1>Tem feriado no mês?</h1>
+    <div class="fake"><label class="f"><span>Dia</span><output>01</output></label><label class="f"><span>Nome</span><output>Confraternização Universal</output></label></div>
+    <p>Inclua também os feriados do seu <b>estado</b> e da sua <b>cidade</b>.</p>
+    ${where('é o quadro <b>Feriados do mês</b>, botão <b>+ Adicionar feriado</b>.')}
+  </div>
+  ${why('Se alguém trabalhar no feriado, a empresa precisa pagar ou dar uma folga em troca, conforme a lei e a convenção coletiva da categoria. A página avisa quando isso acontece.')}`},
+ {label:'Passo 6 de 6 · A escala pronta',html:()=>`
+  ${lia('Pronto! Na versão completa, você clica em <b>Gerar escala</b> e ela aparece assim. Arraste a tabela para o lado para ver o mês inteiro.')}
+  <div class="card">
+    <h1>Escala de janeiro de 2027</h1>
+    ${calendar()}
+    ${legend}${whatIf?`<div class="legend"><span>${X()} Trabalho a mais (simulação)</span></div>`:''}
+    ${totals()}
+  </div>
+  <div class="card">
+    <h2>A página confere a escala para você</h2>
+    <p style="margin:0">Depois de gerar, aparecem avisos. Verde está certo; vermelho precisa de ajuste.</p>
+    ${whatIf?`
+      <div class="alert bad"><strong>⚠️ Carla tem só 1 folga por semana</strong><p>A partir de 16/12/2026 são pelo menos 2. Escolha outro dia de folga para ela.</p></div>
+      <div class="alert bad"><strong>⚠️ Carla passa de 42 horas na semana</strong><p>6 dias × 8 horas = 48 horas. O limite é 42 horas.</p></div>`:`
+      <div class="alert ok"><strong>✅ Todos têm 2 folgas por semana</strong><p>Ana, Bruno e Carla descansam 2 dias em cada semana.</p></div>
+      <div class="alert ok"><strong>✅ Horas dentro do limite</strong><p>Cada pessoa trabalha 40 horas por semana, abaixo das 42 horas.</p></div>`}
+    <div class="alert ok"><strong>✅ Feriado do dia 1º respeitado</strong><p>Ninguém foi escalado para trabalhar no feriado.</p></div>
+    <label class="toggle"><input type="checkbox" id="whatIf" ${whatIf?'checked':''}> E se a Carla trabalhasse também aos domingos? Marque para ver o aviso.</label>
+  </div>`},
+ {label:'Sua vez',html:()=>`
+  ${lia('Agora é a sua vez! Separe estas informações e abra a <b>versão completa</b> para montar a escala da sua empresa.')}
+  <div class="card">
+    <h1>O que ter em mãos</h1>
+    <ul class="check">
+      <li>O nome e a função de cada funcionário</li>
+      <li>Os dias em que a empresa abre</li>
+      <li>O horário de entrada, saída e almoço</li>
+      <li>Os feriados do mês: nacionais, do estado e da cidade</li>
+      <li>A convenção coletiva da sua categoria, se tiver (pergunte ao seu contador)</li>
+    </ul>
+    <p style="margin:16px 0 0"><a class="btn next" href="../">Abrir a Escala Inteligente →</a></p>
+    <p class="where">Ficou com dúvida? Fale com a equipe da ADC TEC: ajudamos a conferir a sua escala.</p>
+  </div>`}
+];
+
+function render(){
+  const s=STEPS[step];
+  $('screen').innerHTML=s.html();
+  $('stepLabel').textContent=s.label;
+  $('barFill').style.width=Math.round(step/(STEPS.length-1)*100)+'%';
+  $('back').hidden=step===0;
+  $('next').hidden=step===STEPS.length-1;
+  $('next').textContent=step===0?'Começar →':step===STEPS.length-2?'Terminar →':'Próximo →';
+  $('live').textContent=s.label;
+  const w=$('whatIf');if(w)w.onchange=()=>{whatIf=w.checked;render();$('whatIf').focus()};
+}
+function go(n){step=Math.max(0,Math.min(STEPS.length-1,n));render();$('screen').focus({preventScroll:true});window.scrollTo({top:0,behavior:'smooth'})}
+$('next').onclick=()=>go(step+1);
+$('back').onclick=()=>go(step-1);
+render();
+})();
+</script>
+</body>
+</html>
